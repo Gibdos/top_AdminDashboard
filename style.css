@@ -1,0 +1,260 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: "Roboto", sans-serif;
+	fill: black;
+}
+
+*::selection {
+	background-color: var(--clr-primary);
+	color: white;
+}
+
+:root {
+	--clr-primary: hsl(40, 30%, 20%);
+	--clr-darker: hsl(40, 30%, 10%);
+	--clr-lighter: hsl(40, 30%, 30%);
+}
+
+.grid {
+	display: grid;
+}
+
+.container {
+	height: 100vh;
+	overflow: hidden;
+	position: fixed;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-areas:
+		"sidebar header header header"
+		"sidebar header header header"
+		"sidebar content content content"
+		"sidebar content content content"
+		"sidebar content content content"
+		"sidebar content content content";
+}
+
+.sidebar {
+	grid-area: sidebar;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 5fr;
+	gap: 5em;
+	background-color: var(--clr-primary);
+	padding: 1em;
+}
+
+.sidebar-logo {
+	grid-template-columns: 1fr 3fr;
+	align-items: center;
+	text-align: center;
+	color: white;
+}
+
+.main-nav {
+	color: white;
+	grid-template-rows: repeat(9, max-content);
+	gap: 1em;
+}
+
+.link.grid {
+	grid-template-columns: 1fr 20fr;
+	justify-items: start;
+	gap: 1em;
+	align-items: center;
+}
+
+.link:nth-child(7) {
+	margin-top: 5em;
+}
+
+.header {
+	grid-area: header;
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-areas:
+		"searchbar searchbar searchbar searchbar searchbar searchbar searchbar searchbar alarm user-small user-small user-small"
+		"greetings greetings greetings greetings greetings greetings greetings greetings gap new upload share";
+	/* background-color: hsl(0, 0%, 50%); */
+	padding: 2em;
+	align-items: center;
+	gap: 2em;
+	z-index: 1;
+	box-shadow: 1px 1px 5px black;
+}
+
+.searchbar {
+	grid-area: searchbar;
+	grid-template-columns: 1fr 95%;
+	align-items: center;
+}
+
+#search {
+	background-color: hsl(0, 0%, 90%);
+	border: none;
+	border-radius: 1em;
+	padding: 0.5em;
+}
+
+#search:focus {
+	font-weight: bold;
+}
+
+.alarm {
+	grid-area: alarm;
+}
+
+.user-small {
+	grid-area: user-small;
+	grid-template-columns: 1fr 1fr 90%;
+	align-items: center;
+	gap: 1em;
+	justify-self: end;
+}
+
+.user {
+	grid-area: greetings;
+	grid-template-columns: 1fr 90%;
+	align-items: center;
+	gap: 2em;
+}
+
+.greeting span:first-child {
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
+.greeting span:last-child {
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+button {
+	background-color: var(--clr-primary);
+	border: 1px solid var(--clr-primary);
+	border-radius: 1em;
+	color: white;
+	padding: 0.5em;
+	cursor: pointer;
+	transition: all 150ms ease;
+	font-weight: bold;
+}
+
+button:hover,
+button:focus {
+	background-color: var(--clr-lighter);
+	border: 1px solid var(--clr-lighter);
+}
+
+.new {
+	grid-area: new;
+}
+
+.upload {
+	grid-area: upload;
+}
+
+.share {
+	grid-area: share;
+}
+
+.content {
+	background-color: hsl(0, 0%, 90%);
+	grid-area: content;
+	grid-template-areas:
+		"card1 card1 card2 card2 announcement"
+		"card1 card1 card2 card2 announcement"
+		"card1 card1 card2 card2 announcement"
+		"card1 card1 card2 card2 announcement"
+		"card3 card3 card4 card4 announcement"
+		"card3 card3 card4 card4 announcement"
+		"card3 card3 card4 card4 announcement"
+		"card3 card3 card4 card4 announcement"
+		"card5 card5 card6 card6 trending"
+		"card5 card5 card6 card6 trending"
+		"card5 card5 card6 card6 trending"
+		"card5 card5 card6 card6 trending";
+	grid-template-columns: 1fr 1fr 1fr 1fr minmax(250px, 250px);
+	padding: 1em;
+	gap: 1em;
+}
+
+.content > div {
+	background-color: hsl(0, 0%, 100%);
+	padding: 1em;
+	border-radius: 1em;
+}
+
+.content > div[class*="card"] {
+	border-left: 5px solid hsl(40, 30%, 50%);
+}
+
+.card1 {
+	grid-area: card1;
+}
+
+.card2 {
+	grid-area: card2;
+}
+
+.card3 {
+	grid-area: card3;
+}
+
+.card4 {
+	grid-area: card4;
+}
+
+.card5 {
+	grid-area: card5;
+}
+
+.card6 {
+	grid-area: card6;
+}
+
+.announcement {
+	grid-area: announcement;
+	grid-template-columns: 1fr;
+}
+
+.announcement-content {
+	display: grid;
+	grid-template-rows: 1fr 90%;
+}
+
+.trending {
+	grid-area: trending;
+}
+
+.trending-content {
+	grid-template-columns: 1fr 90%;
+	gap: 1em;
+}
+
+.trending-content img {
+	border-radius: 50%;
+	box-shadow: 1px 1px 5px black;
+}
+
+.header img {
+	border-radius: 50%;
+}
+
+.header img[src*="svg"] {
+	filter: invert();
+}
+
+.card-buttons {
+	place-self: end;
+}
+
+.card-buttons img {
+	transition: all 150ms ease-in-out;
+}
+
+.card-buttons img:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+}
